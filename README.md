@@ -31,3 +31,6 @@ the project.
 Note: UI is secondary but all the components required to make things work should be present,
 However, you get an extra bonus point for paying attention to UI/UX. For CSS tailwind is
 preferred.
+
+### Some ref
+https://blog.openreplay.com/building-a-custom-fetch-hook-in-react/
