@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/Pagination"
 import Link from 'next/link';
 
-
 const Products = ({ }) => {
     const { data, isPending, error, refetch, undofetch } = useFetch();
     return (
