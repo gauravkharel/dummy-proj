@@ -5,34 +5,30 @@ import { useEffect, useState } from 'react'
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
-    PaginationLink,
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/Pagination"
 import Link from 'next/link';
 
-interface pageProps {
-
-}
 
 const Products = ({ }) => {
-    const [url, setUrl] = useState('https://dummyjson.com/products');
-    const { data, isPending, error, refetch, undoFetch } = useFetch(url);
+    const { data, isPending, error, refetch, undofetch } = useFetch();
     return (
         <div>
             {isPending && <div>Loading....</div>}
             {error && <div>{error}</div>}
-            <ul>
+            <div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2'>
                 {!isPending && !error && data && data.products.map((product) =>
-                    <li key={product.id}>{product.title}</li>
+                    <Link key={product.id} href={`/product/${product.id}`}>
+                        {product.title}
+                    </Link>
                 )}
-            </ul>
+            </div>
             {!isPending && !error && <Pagination>
                 <PaginationContent>
                     <PaginationItem>
-                        <PaginationPrevious aria-disabled onClick={undoFetch} />
+                        <PaginationPrevious aria-disabled onClick={undofetch} />
                     </PaginationItem>
 
                     <PaginationItem>
