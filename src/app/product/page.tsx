@@ -1,11 +1,9 @@
 import Products from '@/components/Products'
-import { FC } from 'react'
-
 interface pageProps {
 
 }
 
-const page: FC<pageProps> = ({ }) => {
+const page = ({ }) => {
     return <div>
         <Products />
     </div>

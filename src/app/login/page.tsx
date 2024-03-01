@@ -18,7 +18,7 @@ const page = ({ }) => {
                     <Login />
                 </CardContent>
                 <CardFooter>
-                    <p>Happy shopping!</p>
+                    <p>Happy shopping!!!</p>
                 </CardFooter>
             </Card>
             <Card className="w-1/2 relative ">

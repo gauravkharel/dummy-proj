@@ -11,9 +11,10 @@ import {
 } from "@/components/ui/Pagination"
 import Link from 'next/link';
 
-const Products = ({ }) => {
-    const [serverUrl, setServerUrl] = useState("https://dummyjson.com/products");
-    const { data, isPending, error, refetch, undofetch } = useFetch(serverUrl);
+
+const CategoryProduct = ({category}) => {
+    const [serverUrl, setServerUrl] = useState(`https://dummyjson.com/products/category`);
+    const { data, isPending, error, refetch, undofetch } = useFetch(serverUrl, 0, category);
     return (
         <div>
             {isPending && <div>Loading....</div>}
@@ -28,7 +29,7 @@ const Products = ({ }) => {
             {!isPending && !error && <Pagination>
                 <PaginationContent>
                     <PaginationItem>
-                        <PaginationPrevious aria-disabled onClick={undofetch} />
+                        <PaginationPrevious onClick={undofetch} />
                     </PaginationItem>
 
                     <PaginationItem>
@@ -40,4 +41,4 @@ const Products = ({ }) => {
     )
 }
 
-export default Products
+export default CategoryProduct

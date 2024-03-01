@@ -17,13 +17,11 @@ import { Input } from "@/components/ui/Input"
 import { LoginRequest, LoginValidator } from "@/lib/validator/user"
 import axios from "axios"
 import { useToast } from "@/hooks/use-toast"
-import { createContext, useContext, useEffect, useReducer, useState } from "react"
+import {  useContext, useEffect, useReducer, useState } from "react"
 import { useRouter } from "next/navigation"
+import LoginContext from "@/context/login-context"
 
 type FormData = z.infer<typeof LoginValidator>
-
-export const LoginContext = createContext(null)
-
 
 export default function LoginForm() {
     const [email, setEmail] = useState('')
@@ -39,7 +37,6 @@ export default function LoginForm() {
     })
     const handleLogin = (email) => {
         setEmail(email);
-        localStorage.setItem('Email', email);
     };
     const onSubmit = async (values: LoginRequest) => {
         const { username, password } = values
@@ -49,14 +46,12 @@ export default function LoginForm() {
                 headers: { 'Content-Type': 'application/json' }
             })
             const newemail = JSON.stringify(response.data.email)
-            console.log(newemail)
             handleLogin(newemail)
             toast({
                 title: `${username} is logged in.`,
                 description: `${newemail}`,
             })
             router.push('/')
-            setEmail('')
         } catch (err) {
             console.log(err)
         }

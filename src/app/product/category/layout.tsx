@@ -8,14 +8,12 @@ const Layout = async ({
     children: React.ReactNode;
 }>) => {
     return (
-        <body >
+        <body suppressHydrationWarning >
             <Navbar />
-            <div className="flex">
-                <Category />
-                <div className='container max-w-7xl mx-auto h-full pt-12'>
-                    {children}
-                </div>
-            </div>
+            <Category />
+            <section className='container max-w-7xl mx-auto h-full pt-12'>
+                {children}
+            </section>
             <Toaster />
         </body>
     );

@@ -16,9 +16,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         <Navbar />
         <div className='container max-w-7xl mx-auto h-full pt-12' suppressHydrationWarning>
           {children}
