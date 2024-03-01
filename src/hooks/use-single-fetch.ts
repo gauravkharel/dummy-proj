@@ -1,7 +1,6 @@
 "use client"
 import { useState, useEffect } from "react";
-export const useSingleFetch = (productid) => {
-  const [serverUrl, setServerUrl] = useState("https://dummyjson.com/products");
+export const useSingleFetch = (url) => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState<boolean>(false);
   const [error, setError] = useState(null);
@@ -10,10 +9,9 @@ export const useSingleFetch = (productid) => {
     const fetchData = async () => {
       setIsPending(true);
       try {
-        const response = await fetch(`${serverUrl}/${productid}`);
+        const response = await fetch(`${url}`);
         if (!response.ok) throw new Error(response.statusText);
         const json = await response.json();
-        
         setIsPending(false);
         setData(json);
         setError(null);
@@ -23,7 +21,7 @@ export const useSingleFetch = (productid) => {
       }
     };
     fetchData();
-  }, [productid]);
+  }, [url]);
 
   return { data, isPending, error };
 };
