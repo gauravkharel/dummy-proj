@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className="container max-w-7xl h-full mx-auto flex items-center justify-between gap-2">
           <Link href={'/'}>Grepsr</Link>
           <Link href={'/product'}>Browse all products</Link>
-          <Link href={'product/categories'}>Browse by categories</Link>
+          <Link href={'/product/category'}>Browse by categories</Link>
           {email ? (
             <div>{email}</div>
           ) : (

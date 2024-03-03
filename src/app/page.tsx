@@ -9,7 +9,7 @@ export default function Home() {
       <div className="flex gap-2 text-2xl text-green-500 font-medium">
 
         <Link href={'/product'}>Browse all products</Link>
-          <Link href={'product/categories'}>Browse by categories</Link>
+          <Link href={'/product/category'}>Browse by categories</Link>
       </div>
     </main>
   );

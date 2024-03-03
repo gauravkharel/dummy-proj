@@ -19,6 +19,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <base href="/" />
+      </head>
       <body className={inter.className} suppressHydrationWarning>
         <Navbar />
         <div className='container max-w-7xl mx-auto h-full pt-12' suppressHydrationWarning>

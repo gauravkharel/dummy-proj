@@ -34,3 +34,4 @@ preferred.
 
 ### Some ref
 https://blog.openreplay.com/building-a-custom-fetch-hook-in-react/
+https://blog.logrocket.com/build-a-half-star-rating-component-in-react-from-scratch/

@@ -10,7 +10,7 @@ export const useFetch = (url, initialSkip = 0, category=null ) => {
     const fetchData = async () => {
       setIsPending(true);
       try {
-        const response = await fetch(!category ? `${url}?limit=10&skip=${skip}`: `${url}/${category}`);
+        const response = await fetch(!category ? `${url}?limit=12&skip=${skip}`: `${url}/${category}`);
         if (!response.ok) throw new Error(response.statusText);
         const json = await response.json();
         setIsPending(false);
@@ -25,11 +25,11 @@ export const useFetch = (url, initialSkip = 0, category=null ) => {
   }, [skip, url, category]);
 
   const refetch = () => {
-    setSkip(skip + 10);
+    setSkip(skip + 12);
   };
 
   const undofetch = () => {
-    setSkip(skip - 10);
+    setSkip(skip - 12);
   };
   return { data, isPending, error, refetch, undofetch };
 };
