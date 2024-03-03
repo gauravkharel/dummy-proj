@@ -19,12 +19,13 @@ import axios from "axios"
 import { useToast } from "@/hooks/use-toast"
 import {  useContext, useEffect, useReducer, useState } from "react"
 import { useRouter } from "next/navigation"
-import LoginContext from "@/context/login-context"
+import {LoginContext, LoginProvider} from "@/context/LoginContext"
 
 type FormData = z.infer<typeof LoginValidator>
 
 export default function LoginForm() {
-    const [email, setEmail] = useState('')
+    //@ts-ignore
+    const {setUser} = useContext(LoginContext)
     const { toast } = useToast()
     const router = useRouter();
     
@@ -35,9 +36,7 @@ export default function LoginForm() {
             password: ""
         }
     })
-    const handleLogin = (email) => {
-        setEmail(email);
-    };
+
     const onSubmit = async (values: LoginRequest) => {
         const { username, password } = values
         try {
@@ -45,20 +44,21 @@ export default function LoginForm() {
                 JSON.stringify({ username: username, password: password }), {
                 headers: { 'Content-Type': 'application/json' }
             })
-            const newemail = JSON.stringify(response.data.email)
-            handleLogin(newemail)
+            const data = await response.data
             toast({
                 title: `${username} is logged in.`,
-                description: `${newemail}`,
+                //@ts-ignore
             })
+            setUser(data)
             router.push('/')
+
         } catch (err) {
             console.log(err)
         }
     }
 
     return (
-        <LoginContext.Provider value={{ email, handleLogin }}>
+        // @ts-ignore
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormDescription>The mock data to access the app:<br />
@@ -97,7 +97,6 @@ export default function LoginForm() {
                     <Button type="submit">Submit</Button>
                 </form>
             </Form>
-        </LoginContext.Provider>
 
     )
 }

@@ -1,7 +1,6 @@
 'use client'
 
 import { useSingleFetch } from '@/hooks/use-single-fetch';
-import Link from 'next/link';
 import { useState } from 'react';
 import { Card, CardContent } from './ui/Card';
 import { AspectRatio } from './ui/AspectRatio';
@@ -20,12 +19,14 @@ import { ArrowLeft } from 'lucide-react';
 import { Loader } from './Loader';
 import { Button } from './ui/Button';
 import { useToast } from '@/hooks/use-toast';
+// import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Product = ({ productId }) => {
     const [serverUrl, setServerUrl] = useState(`https://dummyjson.com/products/${productId}`);
     const { data, isPending, error } = useSingleFetch(serverUrl);
     const { toast } = useToast()
-
+    const router = useRouter()
     const handleClick = () => {
         toast({
             title: `${data.title} is added to cart.`,
@@ -34,10 +35,14 @@ const Product = ({ productId }) => {
     }
     return (
         <div >
-            <Link href={'/product'} className='flex flex-row font-medium text-lg text-gray-600 pb-4'><ArrowLeft />  go back to product listing </Link>
+            <Button variant={'ghost'} onClick={() => router.back()}>
+                <ArrowLeft />
+                Go Back
+            </Button>
+            {/* <Link href={'/product'} className='flex flex-row font-medium text-lg text-gray-600 pb-4'>  Go back </Link> */}
             {isPending && <Loader />}
             {error && <div>{error}</div>}
-            {data && <Card className='flex flex-row p-6 gap-[100px] pl-12' key={data.id}>
+            {data && <Card className='flex flex-row p-6 gap-[100px] pl-12 mt-4' key={data.id}>
                 {/* <AspectRatio ratio={16/9} >
                     <Image src={data.thumbnail} alt={data.description} fill={true} />
                 </AspectRatio> */}
