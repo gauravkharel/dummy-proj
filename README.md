@@ -1,6 +1,15 @@
 ## Dummy Project: Grespr Assessment
 
-First, run the development server:
+First, Clone the project
+```bash
+# clone the project
+git clone https://github.com/gauravkharel/dummy-proj.git
+
+# navigate to it
+cd dummy-proj
+```
+
+Secondly, run the development server:
 
 ```bash
 npm run dev
@@ -13,7 +22,6 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 ### Assessment details
 Using next js and API available at https://dummyjson.com/docs build a simple Web app that

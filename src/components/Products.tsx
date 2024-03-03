@@ -16,6 +16,7 @@ import { Card } from './ui/Card';
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css'
 import { discountedAmout } from '@/lib/utitlity';
+import { Loader } from './Loader';
 
 const Products = ({ }) => {
     const [serverUrl, setServerUrl] = useState("https://dummyjson.com/products");
@@ -26,7 +27,18 @@ const Products = ({ }) => {
         <div>
             <div className=' text-base md:text-lg lg:text-xl font-medium lg:mt-3 md:mt-4 mt-5'>All Products</div>
             <div className='text-base md:text-lg lg:text-lg font-light mb-3'>Browse your favourites</div>
-            {isPending && <div>Loading....</div>}
+            {isPending && <div className='grid grid-cols-4'>
+                <Loader />
+                <Loader />
+                <Loader />
+                <Loader />
+                <Loader />
+                <Loader />
+                <Loader />
+                <Loader />
+                <Loader />
+                <Loader />
+            </div>}
             {error && <div>{error}</div>}
             <div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-8'>
                 {!isPending && !error && data && data.products.map((product) =>
@@ -60,7 +72,7 @@ const Products = ({ }) => {
 
 export const ProductCard = ({ id, thumbnail, description, brand, title, price, category, discountPercentage, rating }) => {
     return (
-        <Link key={id} href={`/product/${id}`}>
+        <Link className=' hover:border hover:rounded-md hover:p-4 hover:border-pink-100 bg-blend-lighten hover:bg-blend-darken' key={id} href={`/product/${id}`}>
             <AspectRatio ratio={16 / 9} >
                 <Image src={thumbnail} alt={description} fill={true} />
             </AspectRatio>

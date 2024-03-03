@@ -8,9 +8,9 @@ interface pageProps {
 }
 
 const page = ({ params }: { params: { category: string } }) => {
-  return <Card>
+  return <div className='m-2'>
     <CategoryProduct category={params.category} />
-  </Card>
+  </div>
 }
 
 export default page
